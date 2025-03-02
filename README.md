@@ -5,7 +5,7 @@ A modern web application for sharing and storing your precious memories through 
 ## Demo
 
 - **Live Site**: [Visit Memories App](https://your-deployment-link-here)
-- **Demo Video**: [Watch Demo](https://your-demo-video-link-here)
+- **Demo Video**: [Watch Demo](https://streamable.com/2ntvdm)
 
 ## Features
 

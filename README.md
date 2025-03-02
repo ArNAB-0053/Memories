@@ -4,7 +4,7 @@ A modern web application for sharing and storing your precious memories through 
 
 ## Demo
 
-- **Live Site**: [Visit Memories App](https://your-deployment-link-here)
+- **Live Site**: [Visit Memories App](https://memories-capture-share.netlify.app/)
 - **Demo Video**: [Watch Demo](https://streamable.com/2ntvdm)
 
 ## Features

@@ -1,5 +1,10 @@
 import { SignIn } from "@clerk/nextjs"
 
+export const metadata = {
+  title: "Sign In",
+  description: "Login to your account",
+};
+
 export default function SignUpPage() {
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-80px)]">

@@ -18,8 +18,9 @@ import { Switch } from "./ui/switch";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
-const MyImages = ({ username }) => {
+const MyImages = ({ username, isOwner=true }) => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [columns, setColumns] = useState(3);
@@ -63,7 +64,7 @@ const MyImages = ({ username }) => {
       }));
       setImages(fetchedImages);
     } catch (error) {
-      console.error("Error fetching images:", error);
+      // console.error("Error fetching images:", error);
       toast.error("Failed to load your images");
     } finally {
       setLoading(false);
@@ -89,7 +90,7 @@ const MyImages = ({ username }) => {
       setImages(images.filter((img) => img.id !== imageId));
       toast.success("Image deleted successfully");
     } catch (error) {
-      console.error("Error deleting image:", error);
+      // console.error("Error deleting image:", error);
       toast.error("Failed to delete image");
     }
   }
@@ -127,7 +128,7 @@ const MyImages = ({ username }) => {
       );
       toast.success(`Image is now ${newIsPublic ? "public" : "private"}`);
     } catch (error) {
-      console.error("Error updating image:", error);
+      // console.error("Error updating image:", error);
       toast.error("Failed to update image");
     }
   }
@@ -186,7 +187,7 @@ const MyImages = ({ username }) => {
 
               {/* Hover Overlay */}
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-between p-3">
-                <div className="absolute top-2 right-2">
+                <div className={cn("absolute top-2 right-2", !isOwner && "hidden")}>
                   <Button
                     variant="default"
                     size="icon"
@@ -209,7 +210,7 @@ const MyImages = ({ username }) => {
                       ).toLocaleDateString() || "No date"}
                     </span>
                   </div>
-                  <div className="flex items-center space-x-1">
+                  <div className={cn("flex items-center space-x-1", !isOwner && "hidden")}>
                     <Switch
                       checked={image.isPublic}
                       onCheckedChange={() =>

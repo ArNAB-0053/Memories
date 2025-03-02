@@ -53,7 +53,7 @@ export default function ImageUploadForm({ username, setIsUploading, isUploading 
           setUploadProgress(progress);
         },
         (error) => {
-          console.error("Upload failed:", error);
+          // console.error("Upload failed:", error);
           toast.error("Upload failed: " + error.message);
           setIsUploading(false);
         },
@@ -85,7 +85,7 @@ export default function ImageUploadForm({ username, setIsUploading, isUploading 
         }
       );
     } catch (error) {
-      console.error("Upload error:", error);
+      // console.error("Upload error:", error);
       toast.error("An unexpected error occurred.");
       setIsUploading(false);
     }

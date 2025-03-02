@@ -5,6 +5,8 @@ import { db } from "@/lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { toast } from "sonner";
 
 export default function MasonryGrid() {
   const [images, setImages] = useState([]);
@@ -24,10 +26,10 @@ export default function MasonryGrid() {
           userImageId: doc.data().userImageId,
           title: doc.data().title || "Untitled",
         }));
-        console.log(fetchedImages)
+        // console.log(fetchedImages);
         setImages(fetchedImages);
       } catch (error) {
-        console.error("Error fetching global images:", error);
+        toast.error("Failed to fetch images");
       } finally {
         setLoading(false);
       }
@@ -73,12 +75,12 @@ export default function MasonryGrid() {
 
   const createMasonryLayout = () => {
     const columnArrays = Array.from({ length: columns }, () => []);
-    
+
     images.forEach((image, index) => {
       const columnIndex = index % columns;
       columnArrays[columnIndex].push(image);
     });
-    
+
     return columnArrays;
   };
 
@@ -89,8 +91,8 @@ export default function MasonryGrid() {
       {masonryColumns.map((column, columnIndex) => (
         <div key={columnIndex} className="flex-1 flex flex-col gap-4">
           {column.map((image) => (
-            <div 
-              key={image.id} 
+            <div
+              key={image.id}
               className="relative group overflow-hidden rounded-lg shadow-md"
             >
               <Image
@@ -106,7 +108,14 @@ export default function MasonryGrid() {
                   <h3 className="text-white font-medium truncate">
                     {image.title}
                   </h3>
-                  <p className="text-gray-200 text-sm">@{image.username}</p>
+                  <p className="text-gray-200 text-sm">
+                    <Link
+                      href={`/@${image.username}`}
+                      className="hover:underline hover:text-white transition-colors duration-200"
+                    >
+                      @{image.username}
+                    </Link>
+                  </p>
                 </div>
               </div>
             </div>
